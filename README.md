@@ -1,6 +1,8 @@
 # SauceDemo Playwright Tests
 
-End-to-end tests for the [SauceDemo](https://www.saucedemo.com/) login, product listing, and product detail pages, using Playwright Test and TypeScript.
+This repository contains Playwright end-to-end tests for [SauceDemo](https://www.saucedemo.com/).
+
+The tests cover login, inventory, product sorting, product details, and cart state. They use page objects for UI interactions and follow the Arrange-Act-Assert pattern.
 
 ## Requirements
 
@@ -33,7 +35,7 @@ SAUCEDEMO_USERNAME=standard_user
 SAUCEDEMO_PASSWORD=secret_sauce
 ```
 
-The local `.env` file is ignored by Git. Playwright loads it through `dotenv` in `playwright.config.ts`, and `LoginPage.credentials` validates and exposes the values to the tests.
+The local `.env` file is ignored by Git. Playwright loads it through `dotenv` in `playwright.config.ts`; `e2e/config/credentials.ts` validates and exposes the values to the tests.
 
 ## Running tests
 
@@ -66,13 +68,19 @@ npx playwright test --headed
 ## Project structure
 
 ```text
+.github/
+  agents/
+    playwright-app-tests.agent.md  Custom Playwright test agent
 e2e/
+  config/
+    credentials.ts    Loads and validates SauceDemo test credentials
   data/
-    products.json       Shared product details used by the tests
+    products.json       Product details used by the tests
+    productSort.json    Expected product order for each sort option
   pages/
     ArticlePage.ts      Product detail page locators and actions
-    LoginPage.ts        Login page locators, actions, and credentials
-    ProductsPage.ts     Product listing actions
+    LoginPage.ts        Login page locators and actions
+    ProductsPage.ts     Product listing locators and actions
   tests/
     ArticleApp.spec.ts
     ProductsApp.spec.ts
@@ -80,4 +88,6 @@ e2e/
 playwright.config.ts
 ```
 
-The specs follow Arrange-Act-Assert and use page-object helpers for UI actions. Product names, descriptions, and prices are kept in `e2e/data/products.json` and reused by the relevant suites.
+Product names, descriptions, and prices are stored in `e2e/data/products.json`; expected sorting results are stored in `e2e/data/productSort.json`.
+
+The **Playwright App Test Generator** agent (`.github/agents/playwright-app-tests.agent.md`) helps create and maintain end-to-end tests using this repository's page-object, Arrange-Act-Assert, and validation conventions.

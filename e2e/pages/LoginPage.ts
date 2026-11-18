@@ -1,22 +1,6 @@
 import { type Locator, type Page } from "@playwright/test"
 
 export class LoginPage {
-  static get credentials(): {
-    username: string
-    password: string
-  } {
-    const username = process.env.SAUCEDEMO_USERNAME
-    const password = process.env.SAUCEDEMO_PASSWORD
-
-    if (!username || !password) {
-      throw new Error(
-        "Set SAUCEDEMO_USERNAME and SAUCEDEMO_PASSWORD in the .env file before running tests",
-      )
-    }
-
-    return { username, password }
-  }
-
   readonly page: Page
   readonly usernameInput: Locator
   readonly passwordInput: Locator

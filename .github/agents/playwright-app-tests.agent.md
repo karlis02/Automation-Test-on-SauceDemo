@@ -14,7 +14,7 @@ Create and maintain end-to-end Playwright tests for the app or feature the user 
 - Put page objects and their selectors/actions in `e2e/pages/`. Reuse an existing page object when appropriate; create or extend one when the requested app needs its own helpers.
 - Use `@playwright/test` and the repository's existing imports and `test.describe`, `test.beforeEach`, and `test.afterEach` structure where appropriate.
 - Do not use semicolons in Playwright spec or page-object files; JavaScript/TypeScript automatic semicolon insertion makes them unnecessary, and this convention applies across `e2e/tests/` and `e2e/pages/`.
-- Read login credentials from `LoginPage.credentials`, which loads the `.env` variables; never hardcode the username or password in specs. Keep `.env` ignored by version control and use `.env.example` to document required variables.
+- Read login credentials from `getCredentials` in `e2e/config/credentials.ts`, which loads the `.env` variables; never hardcode the username or password in specs. Keep `.env` ignored by version control and use `.env.example` to document required variables.
 - Use clear suite names, descriptive test names, and named constants for repeated test data.
 - Match existing formatting and keep changes scoped to the requested app and behavior.
 
